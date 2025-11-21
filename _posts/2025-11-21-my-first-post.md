@@ -37,7 +37,7 @@ I’ve met *so many fascinating souls* at Peking University, including some from
 伟大的 [Jiang](https://jiang-reizen.github.io/)​老师 可以爆点金币吗:tada:<br>
 希望下次在图书馆偶遇的时候可以早点认出你, [Logic]([Logic's world](https://logic-al-al.github.io/index.html)) :happy:<br>
 ....
-![cake]("E:\personal_page\cly_cake_20.png")
+![cake]("\assets\images\cly_cake_20.png")
 
 
 Wrapping up the first blog post here. Glad you made it this far! This is just the beginning, and there’s more to come. Always on the road, thank you for accompanying me along the way.
@@ -48,5 +48,6 @@ AND————
 
 #### Good morning, good afternoon, and good night.​ 
 ![firework](\assets\images\firework.jpg)
+
 
 
