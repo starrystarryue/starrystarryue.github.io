@@ -4,7 +4,7 @@ title: Home
 description: >-
   Especializado en el desarrollo de API RESTs con Ruby on Rails. He participado
   en diversas etapas del ciclo de desarrollo de aplicaciones.
-image: /assets/images/main.avif
+image: /assets/images/my_avatar.png
 main_content: >
   # Hi, Glad to meet you here!
 
@@ -25,4 +25,4 @@ permalink: /
 
 I truly appreciate your understanding and will continue to update and improve it regularly. Thank you for your attention and support along the way! Your presence here means a lot, and I look forward to sharing more with you soon.
 
-Have a good day!
+Have a good day!☀️
