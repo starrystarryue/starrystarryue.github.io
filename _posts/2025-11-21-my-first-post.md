@@ -32,12 +32,11 @@ Oh, and I nearly forgot this ...
 
 I’ve met *so many fascinating souls* at Peking University, including some from my own major, such as:
 
-什么时候能有24xk xq xgg一半厉害, who is xq? -->[Truppy]([Home • TRpuppy的个人主页](https://trpuppy.vercel.app/)) 🐶<br>
+什么时候能有24xk xq xgg一半厉害, who is xq? -->[Truppy](https://trpuppy.vercel.app/) 🐶<br>
 我们的双学位galama战士 [Nicheeeee]() !💵 <br>
 伟大的 [Jiang](https://jiang-reizen.github.io/)​ 老师 可以爆点金币吗🎉 <br>
-希望下次在图书馆偶遇的时候可以早点认出你, [Logic]([Logic's world](https://logic-al-al.github.io/index.html)) 😆 <br>
+希望下次在图书馆偶遇的时候可以早点认出你, [Logic](https://logic-al-al.github.io) 😆 <br>
 ....
-![cake]("\assets\images\cly_cake_20.png")
 
 
 Wrapping up the first blog post here. Glad you made it this far! This is just the beginning, and there’s more to come. Always on the road, thank you for accompanying me along the way.
@@ -48,6 +47,7 @@ AND————
 
 #### Good morning, good afternoon, and good night.​ 
 ![firework](\assets\images\firework.jpg)
+
 
 
 
