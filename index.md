@@ -9,9 +9,9 @@ main_content: >
   # Hi, Glad to meet you here!
 
   **Welcome to my personal space!**
-  I am Starryue, a sophomore majoring in Intelligence Science at Yuanpei College, Peking University.
-  
-  Here, you'll find my thoughts, daily musings, and perhaps some of my future projects. 
+  I am Starryue, a sophomore majoring in Intelligence Science at Yuanpei College, Peking University. <br>
+  <br>
+  Here, you'll find my thoughts, daily musings, and perhaps some of my future projects. <br>
   I’m excited to share my journey with you, feel free to explore and stay tuned for more!
   
 footer: true
