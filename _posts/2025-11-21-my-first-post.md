@@ -2,7 +2,7 @@
 layout: post
 title: My first post!
 image: /assets/images/my_avatar.png
-category: Dailies
+category: Daily
 author: Starryue
 ---
 
@@ -47,6 +47,7 @@ AND————
 
 #### Good morning, good afternoon, and good night.​ 
 ![firework](\assets\images\firework.jpg)
+
 
 
 
