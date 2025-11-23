@@ -1,10 +1,11 @@
 ---
 layout: post
-title: Vcl Notes of Geometry
+title: vcl-Geometry
 image: /assets/images/my_avatar.png
 category: Notes
 author: Starryue
 ---
+
 # Geometry 几何
 
 几何：
@@ -189,7 +190,7 @@ $$
 
   定义三角网格顶点上的微分量
 
-  <img src="E:\vcI\garbage\notes-vcl-part2-local area.png" alt="image" style="zoom:35%;" />
+  ![img1](notes-vcl-part2-local area.png)
 
 - #### Normal Vectors (法向量)
 
@@ -620,5 +621,6 @@ $$
 
 
 ### 5. 投影变换
+
 
 
