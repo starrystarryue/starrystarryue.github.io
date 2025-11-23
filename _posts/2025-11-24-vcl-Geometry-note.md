@@ -1,7 +1,7 @@
 ---
 layout: post
 title: vcl Geometry I
-image: /assets/images/my_avatar.png
+image: https://picsum.photos/500/300
 category: Notes
 author: Starryue
 ---
@@ -314,6 +314,7 @@ $$
 详细参考 Lab2 Task3
 
 参考资料：[Surface simplification using quadric error metrics](https://dl.acm.org/doi/pdf/10.1145/258734.258849)
+
 
 
 
