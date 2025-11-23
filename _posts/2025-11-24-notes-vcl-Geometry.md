@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Revision on vcl —— Geometry
+title: Vcl Notes of Geometry
 image: /assets/images/my_avatar.png
 category: Notes
 author: Starryue
@@ -620,4 +620,5 @@ $$
 
 
 ### 5. 投影变换
+
 
