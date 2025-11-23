@@ -1,7 +1,7 @@
 ---
 layout: post
 title: vcl Geometry I
-image: /assets/images/my_avatar2.png
+image: "https://picsum.photos/500/300"
 category: Notes
 author: Starryue
 
