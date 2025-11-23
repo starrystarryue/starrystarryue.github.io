@@ -1,13 +1,10 @@
 ---
 layout: post
-title: On vcl: Geometry
+title: On vcl Geometry
 image: /assets/images/my_avatar.png
 category: Notes
 author: Starryue
 ---
-
-
-
 # Geometry 几何
 
 几何：
@@ -620,5 +617,6 @@ $$
 - $c = \cos(\phi)$ 和 $s = \sin(\phi)$ 分别是旋转角度的余弦和正弦。
 
 这个旋转矩阵可以绕任意轴进行旋转而不仅仅是绕标准坐标轴进行。
+
 
 ### 5. 投影变换
