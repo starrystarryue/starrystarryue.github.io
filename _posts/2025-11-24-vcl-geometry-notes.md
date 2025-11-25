@@ -1,7 +1,7 @@
 ---
 layout: post
 title: vcl Geometry I
-image: "https://picsum.photos/500/300"
+image: \assets\images\my_avatar2.png
 category: Daily
 author: Starryue
 
@@ -191,33 +191,27 @@ $$
 
   定义三角网格顶点上的微分量
 
-  <img src="E:\vcI\garbage\notes-vcl-part2-local area.png" alt="image" style="zoom:35%;" />
+  ![image1](\assets\images\notes\vcl\notes-vcl-part2-local area.png)
 
 - #### Normal Vectors (法向量)
 
   定义三角形内部点和顶点的法向量
 
-  <img src="E:\vcI\garbage\notes-vcl-part2-normal vector.png" alt="image" style="zoom:35%;" />
+![image2](\assets\images\notes\vcl\notes-vcl-part2-normal vector.png)
 
 - #### Gradients (梯度)
 
   线性插值, 三角形内部点的梯度
 
-  <img src="E:\vcI\garbage\notes-vcl-part2-gradient.png" alt="image" style="zoom:35%;" />
+![image3](\assets\images\notes\vcl\notes-vcl-part2-gradient.png)
 
 - #### Laplace-Beltrami Operator (拉普拉斯)
 
   顶点Laplace算子的一般形式，均匀、余切情况
+  均匀情况：$$ w_{ij} = \frac{1}{N_i} $$
+   
+![image4](\assets\images\notes\vcl\notes-vcl-part2-Laplace)
 
-  <img src="E:\vcI\garbage\notes-vcl-part2-Laplace.png" alt="image" style="zoom:35%;" />
-
-<img src="E:\vcI\garbage\ef532cf2-629b-4169-90d1-11bc96fdde2d.png" alt="ef532cf2-629b-4169-90d1-11bc96fdde2d" style="zoom:35%;" />
-
-
-
-- 关于 Gradient 和 Laplacian
-
-梯度一致的时候，Laplace为0。
 
 ------
 
