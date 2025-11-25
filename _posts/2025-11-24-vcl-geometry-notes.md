@@ -29,7 +29,8 @@ author: Starryue
    model fitting的方法？如何利用采样一致性？
 4. 几何变换
 
-[TOC]
+* TOC
+{:toc}
 
 {just a summary of personal review, for reference only.}
 
