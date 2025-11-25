@@ -2,7 +2,7 @@
 layout: post
 title: vcl Geometry I
 image: "https://picsum.photos/500/300"
-category: Notes
+category: Daily
 author: Starryue
 
 ---
