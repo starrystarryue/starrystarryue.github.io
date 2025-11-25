@@ -1,8 +1,8 @@
 ---
 layout: post
-title: vcl Geometry I
+title: vcl Geometry
 image: \assets\images\my_avatar2.png
-category: Daily
+category: Notes
 author: Starryue
 
 ---
@@ -31,7 +31,7 @@ author: Starryue
 
 [TOC]
 
-
+{just a summary of personal review, for reference only.}
 
 ## **08 Geometry Representation (几何表示)**
 
