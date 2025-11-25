@@ -28,8 +28,8 @@ author: Starryue
 4. 几何变换
 
 **目录**
-- [Geometry 几何](#geometry-几何)
-  - [08 Geometry Representation (几何表示)](#08-geometry-representation-几何表示)
+- [**Geometry 几何**](#geometry-几何)
+  - [**08 Geometry Representation (几何表示)**](#08-geometry-representation-几何表示)
     - [Polygon Mesh -- Triangle mesh (三角网格)](#polygon-mesh---triangle-mesh-三角网格)
     - [Subdivision Surface (细分曲面)](#subdivision-surface-细分曲面)
       - [1）Catmull-Clark Subdivision](#1-catmull-clark-subdivision)
@@ -46,7 +46,7 @@ author: Starryue
         - [1. 能量函数](#1-能量函数)
         - [2. 最优化方程](#2-最优化方程)
         - [3. 解线性方程](#3-解线性方程)
-  - [09 Geometry Processing (几何处理)](#09-geometry-processing-几何处理)
+  - [**09 Geometry Processing (几何处理)**](#09-geometry-processing-几何处理)
     - [Discrete differential geometry (离散微分几何)](#discrete-differential-geometry-离散微分几何)
       - [Local Averaging Region (局部平均区域)](#local-averaging-region-局部平均区域)
       - [Normal Vectors (法向量)](#normal-vectors-法向量)
@@ -60,7 +60,7 @@ author: Starryue
     - [Mesh Simplification (网格简化)](#mesh-simplification-网格简化)
       - [网格简化](#网格简化)
       - [流程](#流程-1)
-  - [10 Geometry Reconstruction (几何重建)](#10-geometry-reconstruction-几何重建)
+  - [**10 Geometry Reconstruction (几何重建)**](#10-geometry-reconstruction-几何重建)
     - [Registration (点云注册)](#registration-点云注册)
       - [ICP 算法](#icp-算法)
         - [1. PCA (Principle Component Analysis）初始化 R,t](#1-pca-principle-component-analysis初始化-rt)
@@ -85,7 +85,7 @@ author: Starryue
     - [Model Fitting (点云的模型拟合)](#model-fitting-点云的模型拟合)
       - [最小二乘法](#最小二乘法)
       - [RANSAC](#ransac)
-  - [11 Transformations (几何变换)](#11-transformations-几何变换)
+  - [**11 Transformations (几何变换)**](#11-transformations-几何变换)
     - [1. Translation](#1-translation)
     - [2. 2D Rotation](#2-2d-rotation)
     - [3. Rodrigues 旋转公式](#3-rodrigues-旋转公式)
@@ -212,25 +212,33 @@ $$
 ###### 2. 最优化方程
 
 为了最小化系统的总能量E，通过求解能量函数的 *梯度* 来优化顶点的位置，即：
+
 $$
 \frac{\partial E}{\partial t_i} = \sum_{j \in N_i} D_{ij} (\mathbf{t_i} - \mathbf{t_j}) = 0
 $$
+
 做简单的变换，有：
+
 $$
 t_i = \sum_{j \in N_i} \lambda_{ij} t_j
 $$
+
 并定义系数（coefficient)为：
+
 $$
 \lambda_{ij} = \frac{D_{ij}}{\sum_{k \in N_i} D_{ik}}
 $$
+
 常用的仿射组合系数有三种：平均系数、值坐标系数、 调和坐标系数
 
 ###### 3. 解线性方程
 
 即转化为这个线性方程：
+
 $$
 t_i - \sum_{j\in N_i} \lambda_{ij} t_j = 0 
 $$
+
 而在网格的边界上，某些顶点的位置是已知的，固定边界映射过去，作为给定的边界条件来限制网格的参数化。
 
 构建线性方程组 $At=b$，$A$ 是表示网格中每个顶点和相邻顶点之间关系的矩阵，$t$ 是需要计算的未知的顶点位置，$b$是已知的边界条件约束。再用如[Gaussi-Sidel迭代](https://zhuanlan.zhihu.com/p/389389672) 求解即可。
@@ -285,46 +293,62 @@ $$
 类比图像处理，平滑就是 “去噪” 的过程，<u>改善网格的顶点分布</u>使得其更加平滑、自然。
 
 借助 “扩散流” 的模型来理解，对于一个时空信号 f(x,t), 扩散流公式：
+
 $$
 \frac{\partial f(x,t)}{\partial t}=\lambda \Delta f(x,t)
 $$
+
 应用到网格平滑上，可以吧将带噪音的顶点坐标理解成杂乱分布的热量，遂扩散的进行，热量分布逐渐趋于平衡，于是顶点构成的表面趋于平滑所以，利用定义在表面的拉普拉斯算子，这里关注 *拉普拉斯平滑*：修改网格顶点的位置，使得每个顶点的位置趋向其邻域的平均位置。
 
 #### 流程
 
 ①空间离散化，将函数值离散为网格顶点上的值，f(t) = (f(v1,t), f(v2,t),....f(vn,t)), 对每个顶点：
+
 $$
 \frac{\partial f(v_i,t)}{\partial t}=\lambda \Delta f(v_i,t)
 $$
+
 于是，有矩阵形式：
+
 $$
 \frac {\partial \mathbf{f}(t)}{\partial t} = \lambda \cdot L\mathbf{f}(t)
 $$
+
 ②对于时间的离散化，采用均匀间隔的时间步长h，利用有限差分近似等式左侧的偏微分：
+
 $$
 \frac {\partial \mathbf{f}(t)}{\partial t} =\frac{ \mathbf{f}(t+h) - \mathbf{f}(t)}{h}
 $$
+
 显示欧拉，形式可以改写成：
+
 $$
 \mathbf{f}(t+h)  = \mathbf{f}(t)+h\frac {\partial \mathbf{f}(t)}{\partial t}  = \mathbf{f} + h\lambda \cdot L \mathbf{f}(t)
 $$
+
 即， 每经过一个h的时间步，用此式更新每个顶点上的函数值，直至达到设定的迭代停止条件。带入“网格平滑” 的背景，令函数 f 就表示顶点的坐标，则得到了**第（k+1）步的 Laplacian smoothing更新公式**：
+
 $$
 \mathbf{x}_i^{k+1} = \mathbf{x}_i^{k}+ h \lambda \cdot \Delta\mathbf{x}_i^{k}
 $$
 
+
 #### 拉普拉斯算子的两种形式
 
 ①均匀算子情况下，
+
 $$
 \Delta v_i = \frac{1}{|N(v_i)|} \sum_{j \in N(v_i)} (v_j - v_i)
 $$
+
 只考虑邻居的数量以及邻顶点的位置信息，忽略了面的曲率等信息，因而平滑 ***沿重心方向*** 移动，即相邻点的平均位置；
 
 ②余切算子情况下，
+
 $$
 \Delta v_i = \frac{1}{2A_i} \sum_{j \in N(i)} \left( \cot \theta_{ij} + \cot \theta_{ji} \right) (v_j - v_i)
 $$
+
 考虑了每个顶点相邻三角形的几何特性（邻接边的角度），够使顶点沿着网格的几何结构进行移动，***更能够保留几何特征***。
 
 ------
@@ -338,9 +362,11 @@ $$
 回顾：泊松图像编辑，类比到三维的应用即 拉普拉斯网格编辑。
 
 目标：指定一些顶点的目标位置后，重建一个既满足这些顶点约束、又尽可能保持局部拉普拉斯微分坐标的网格。数学公式：
+
 $$
 \arg \min_{v'_1, \dots, v'_n} \sum_{i=1}^n \left\| L(v'_i) - \Delta_i \right\|^2 + \sum_{j \in C} \left\| v'_j - u_j \right\|^2
 $$
+
 其中：
 
 - $v'_i$ 是顶点 $i$ 的新位置。
