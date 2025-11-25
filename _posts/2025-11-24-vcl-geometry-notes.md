@@ -8,7 +8,7 @@ author: Starryue
 ---
 
 # Geometry 几何
-问题自查：
+**问题自查**
 1. 几何表示
    计算机中如何编码几何？
    polygon mesh表示的优劣？triangle mesh的几种表示？
@@ -91,6 +91,7 @@ author: Starryue
     - [3. Rodrigues 旋转公式](#3-rodrigues-旋转公式)
     - [4. 3D Rotation Matrix](#4-3d-rotation-matrix)
     - [5. 投影变换](#5-投影变换)
+
 {just a summary of personal review, for reference only.}
 
 ## **08 Geometry Representation (几何表示)**
