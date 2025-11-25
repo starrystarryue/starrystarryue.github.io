@@ -8,9 +8,7 @@ author: Starryue
 ---
 
 # Geometry 几何
-
-几何：
-
+问题自查：
 1. 几何表示
    计算机中如何编码几何？
    polygon mesh表示的优劣？triangle mesh的几种表示？
@@ -29,8 +27,70 @@ author: Starryue
    model fitting的方法？如何利用采样一致性？
 4. 几何变换
 
-[TOC]
-
+**目录**
+- [Geometry 几何](#geometry-几何)
+  - [08 Geometry Representation (几何表示)](#08-geometry-representation-几何表示)
+    - [Polygon Mesh -- Triangle mesh (三角网格)](#polygon-mesh---triangle-mesh-三角网格)
+    - [Subdivision Surface (细分曲面)](#subdivision-surface-细分曲面)
+      - [1）Catmull-Clark Subdivision](#1-catmull-clark-subdivision)
+        - [1. 新增“边点”、面心](#1-新增边点面心)
+        - [2. 更新顶点](#2-更新顶点)
+        - [3. 将更新过的点与点相连，更新边](#3-将更新过的点与点相连更新边)
+        - [4. 储存更新的面](#4-储存更新的面)
+      - [2）Loop subdivision](#2-loop-subdivision)
+        - [1. 每条边上新增顶点](#1-每条边上新增顶点)
+        - [2. 更新旧顶点](#2-更新旧顶点)
+    - [Mesh Parameterization(网格参数化)](#mesh-parameterization网格参数化)
+      - [网格参数化](#网格参数化)
+      - [Spring System](#spring-system)
+        - [1. 能量函数](#1-能量函数)
+        - [2. 最优化方程](#2-最优化方程)
+        - [3. 解线性方程](#3-解线性方程)
+  - [09 Geometry Processing (几何处理)](#09-geometry-processing-几何处理)
+    - [Discrete differential geometry (离散微分几何)](#discrete-differential-geometry-离散微分几何)
+      - [Local Averaging Region (局部平均区域)](#local-averaging-region-局部平均区域)
+      - [Normal Vectors (法向量)](#normal-vectors-法向量)
+      - [Gradients (梯度)](#gradients-梯度)
+      - [Laplace-Beltrami Operator (拉普拉斯)](#laplace-beltrami-operator-拉普拉斯)
+    - [Mesh Smoothing (网格平滑)](#mesh-smoothing-网格平滑)
+      - [从 “扩散” 到平滑](#从-扩散-到平滑)
+      - [流程](#流程)
+      - [拉普拉斯算子的两种形式](#拉普拉斯算子的两种形式)
+    - [Detail-Preserving Mesh Editing (网格编辑)](#detail-preserving-mesh-editing-网格编辑)
+    - [Mesh Simplification (网格简化)](#mesh-simplification-网格简化)
+      - [网格简化](#网格简化)
+      - [流程](#流程-1)
+  - [10 Geometry Reconstruction (几何重建)](#10-geometry-reconstruction-几何重建)
+    - [Registration (点云注册)](#registration-点云注册)
+      - [ICP 算法](#icp-算法)
+        - [1. PCA (Principle Component Analysis）初始化 R,t](#1-pca-principle-component-analysis初始化-rt)
+          - [找到 “轴”](#找到-轴)
+          - [对齐](#对齐)
+        - [2. 通过 p'i = Rp_i + t，匹配最近点](#2-通过-pi-rp_i--t匹配最近点)
+        - [3. 距离超过阈值的点对剔除](#3-距离超过阈值的点对剔除)
+        - [4. 建立误差函数](#4-建立误差函数)
+        - [5. 最小化误差函数（SVD 优化 R,t）](#5-最小化误差函数svd-优化-rt)
+        - [6. 迭代直至收敛](#6-迭代直至收敛)
+    - [Surface Reconstruction Algorithm (表面重建)](#surface-reconstruction-algorithm-表面重建)
+      - [Delaunay Triangulation (德劳内三角剖分)](#delaunay-triangulation-德劳内三角剖分)
+        - [核心思想](#核心思想)
+        - [地形建模的应用](#地形建模的应用)
+      - [Poisson Surface Reconstruction (泊松表面重建)](#poisson-surface-reconstruction-泊松表面重建)
+        - [step1 构造SDF](#step1-构造sdf)
+        - [step2 进行 Marching Cubes](#step2-进行-marching-cubes)
+          - [空间划分](#空间划分)
+          - [顶点编码与交点插值](#顶点编码与交点插值)
+          - [三角形连接查询表](#三角形连接查询表)
+          - [法向量计算](#法向量计算)
+    - [Model Fitting (点云的模型拟合)](#model-fitting-点云的模型拟合)
+      - [最小二乘法](#最小二乘法)
+      - [RANSAC](#ransac)
+  - [11 Transformations (几何变换)](#11-transformations-几何变换)
+    - [1. Translation](#1-translation)
+    - [2. 2D Rotation](#2-2d-rotation)
+    - [3. Rodrigues 旋转公式](#3-rodrigues-旋转公式)
+    - [4. 3D Rotation Matrix](#4-3d-rotation-matrix)
+    - [5. 投影变换](#5-投影变换)
 {just a summary of personal review, for reference only.}
 
 ## **08 Geometry Representation (几何表示)**
@@ -88,13 +148,13 @@ $$
 
 ###### 1.每条边上新增顶点
 
-v0 v1是一条边的两个端点，则：
+$v_0$ $v_1$是一条边的两个端点，则：
 
 如果这条边有 两个相邻面，新的顶点位置为：
 $$
 v_{\text{new}} = \frac{3}{8} (v_0 + v_1) + \frac{1}{8} (v_2 + v_3)
 $$
-其中v2 v3是相邻三角形的第三个顶点；
+其中$v_2$ $v_3$是相邻三角形的第三个顶点；
 
 如果这条边只有 一个相邻面，新的顶点位置是该边的两个端点的中点：
 $$
@@ -109,10 +169,10 @@ v' = (1 - n * u) v + \sum_{i=1}^{n} u v_i
 $$
 其中，
 
-- v 是顶点的原始位置
-- n 是该顶点的度数（即相邻的面数）
-- u 是加权系数：n=3 则 u=3/16, 否则u=3/8n
-- vi 是与该顶点相邻的每个顶点
+-$v$ 是顶点的原始位置
+- $n$ 是该顶点的度数（即相邻的面数）
+-$u$ 是加权系数：$n=3$  则 $u=\frac{3}{16}$, 否则$u=\frac{3}{8n}$
+-$v_i$ 是与该顶点相邻的每个顶点
 
 通过以上操作，每个三角形都会被细分为 *四个子三角形*。
 
@@ -144,9 +204,9 @@ E = \frac{1}{2} \sum_{i=1}^{n} \sum_{j \in N_i} \frac{1}{2} D_{ij} \| \mathbf{t_
 $$
 其中，
 
-- ti=(ui,vi) 是二维参数空间中点 i 的坐标，tj 同理。
-- Dij 是顶点 i 和 j 之间的弹簧系数。
-- Ni 是与顶点 i 相邻的顶点集。
+- $t_i=(u_i,v_i)$ 是二维参数空间中点 $i$的坐标，$t_j$ 同理。
+- $D_{ij}$ 是顶点 $i$ 和 $j$ 之间的弹簧系数。
+- $N_i$ 是与顶点 $i$ 相邻的顶点集。
 
 ###### 2. 最优化方程
 
@@ -172,7 +232,7 @@ t_i - \sum_{j\in N_i} \lambda_{ij} t_j = 0
 $$
 而在网格的边界上，某些顶点的位置是已知的，固定边界映射过去，作为给定的边界条件来限制网格的参数化。
 
-构建线性方程组 At=b，A 是表示网格中每个顶点和相邻顶点之间关系的矩阵，t 是需要计算的未知的顶点位置， b是已知的边界条件约束。再用如 [线性方程组-迭代法 2：Jacobi迭代和Gauss-Seidel迭代 - 知乎](https://zhuanlan.zhihu.com/p/389389672)) 迭代求解即可。
+构建线性方程组 $At=b$，$A$ 是表示网格中每个顶点和相邻顶点之间关系的矩阵，$t$ 是需要计算的未知的顶点位置，$b$是已知的边界条件约束。再用如[Gaussi-Sidel迭代](https://zhuanlan.zhihu.com/p/389389672) 求解即可。
 
 
 
@@ -208,7 +268,7 @@ $$
 - #### Laplace-Beltrami Operator (拉普拉斯)
 
   顶点Laplace算子的一般形式，均匀、余切情况
-  均匀情况：$$ w_{ij} = \frac{1}{N_i} $$
+  均匀情况：$ w_{ij} = \frac{1}{N_i} $
    
 ![image4](/assets/images/notes/vcl/notes-vcl-part2-Laplace.png)
 
@@ -282,11 +342,11 @@ $$
 $$
 其中：
 
-- vi' 是顶点 i 的新位置。
-- L(vi') 是拉普拉斯算子作用于顶点 vi'，它表示每个顶点相对于其邻居的偏移量。
-- delta i 是目标拉普拉斯误差, 通常是原始网格或参考网格的拉普拉斯算子值。
-- C 是需要满足约束的顶点集合（例如边界顶点）。
-- uj 是约束条件下顶点 j 的目标位置。
+- $v'_i$ 是顶点 $i$ 的新位置。
+- $L(v'_i) $是拉普拉斯算子作用于顶点 $v'_i$，表示每个顶点相对于其邻居的偏移量。
+- $\Delta i$ 是目标拉普拉斯误差, 原始网格或参考网格的拉普拉斯算子值。
+- $C $是需要满足约束的顶点集合（边界顶点）。
+- $u_j$ 是约束条件下顶点 $j$ 的目标位置。
 
 这是一个标准的最小二乘问题，转化为线性系统迭代求解即可。
 
@@ -301,7 +361,8 @@ $$
 #### 网格简化
 
 为什么需要简化？
---> 用plygon mesh来表示物体模型，但处理的物体模型通常由很多块面片组成，逐一处理渲染在游戏、可视化等场景十分影响效率；同时，并非每时每刻都需要用最高精度的模型，比如模型在远处时，本身细节就不用很精致，精度较低不影响渲染质量。所以，可以用更多的面片来表示近处物体，较少的面片来表示远处物体。
+
+用plygon mesh来表示物体模型，但处理的物体模型通常由很多块面片组成，逐一处理渲染在游戏、可视化等场景十分影响效率；同时，并非每时每刻都需要用最高精度的模型，比如模型在远处时，本身细节就不用很精致，精度较低不影响渲染质量。所以，可以用更多的面片来表示近处物体，较少的面片来表示远处物体。
 
 这就是网格简化：用更少的面片数来表达原有模型。
 
@@ -337,7 +398,7 @@ $$
 
 ###### 找到 “轴”
 
-<img src="C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20251122173333430.png" alt="image-20251122173333430" style="zoom:40%;" />
+![image4](/assets/images/notes/vcl/notes-vcl-part2-PCA.png)
 
 step 1.中心化数据，去均值化处理使得数据的均值为0
 
@@ -370,7 +431,7 @@ $$
 
 ##### 5.最小化误差函数，利用SVD分解 优化R, t
 
-<img src="E:\vcI\garbage\notes-vcl-part2-SVD.png" alt="notes-vcl-part2-SVD" style="zoom:50%;" />
+![image4](/assets/images/notes/vcl/notes-vcl-part2-SVD.png)
 
 ##### 6. 迭代2-5步至误差函数足够小
 
@@ -397,7 +458,7 @@ Voronoi diagram:
 
 规律：任何一对存在公用边的三角形，必须满足对顶点角度的和小于180度，否则不满足德劳内三角剖分的性质（此时进行***边翻转***，如下：）
 
-<img src="E:\vcI\garbage\notes-vcl-part2-edgeflip.png" alt="notes-vcl-part2-edgeflip" style="zoom:50%;" />
+![image4](/assets/images/notes/vcl/notes-vcl-part2-edgeflip.png)
 
 于是，由这个思路，构造如下的简易算法：
 
@@ -439,7 +500,7 @@ Delaunay三角剖分保证了**局部最优的连通性**，使得点云的插�
 
 符号说明：对于一个空间中的实体 M，指示函数 $\chi_M$ 标识其表面 $\partial M$，在M内函数值为1否则为0；则$∇χ_M $只在  $\partial M$ 上具有非零梯度, 且表面上某点的梯度方向与该点的法向量反向。
 
-<img src="E:\vcI\garbage\notes-vcl-part2-SDF.png" alt="notes-vcl-part2-SDF" style="zoom:50%;" />
+![image4](/assets/images/notes/vcl/notes-vcl-part2-SDF.png)
 
 解决问题：已知函数的梯度场，还原这个函数。即根据 $ \nabla \chi_M = \mathbf{V}$ 估计 $\chi_M$ 
 
@@ -457,13 +518,13 @@ Delaunay三角剖分保证了**局部最优的连通性**，使得点云的插�
 
 每个立方体的 8 个顶点可以用 0 / 1 表示 inside / outside，一共 2^8=256 种组合。用一个  *8-bit 的二进制数* 来编码；通过对称性这些情况可以简化为 **15** 种基本拓扑模式：
 
-<img src="E:\vcI\garbage\notes-vcl-part2-marching cubes.png" alt="notes-vcl-part2-marching cubes" style="zoom:45%;" />
+![image4](/assets/images/notes/vcl/notes-vcl-part2-marching cubes.png)
 
 ###### 3. 变状态查询表
 
 算法维护了==两个查询表==：
 
-<img src="E:\vcI\garbage\notes-vcl-part2-marching cubes2.png" alt="notes-vcl-part2-marching cubes2" style="zoom:33%;" />
+![image4](/assets/images/notes/vcl/notes-vcl-part2-marching cubes2.png)
 
 第一个表根据顶点编码成的索引查询关于边状态的编码：每个立方体有 12 条边，根据顶点 inside/outside 状态判断哪些边会被等值面穿过，用一个 *12-bit 的二进制串* 表示边状态。
 
