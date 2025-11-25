@@ -1,7 +1,7 @@
 ---
 layout: post
 title: vcl Geometry
-image: \assets\images\my_avatar2.png
+image: /assets/images/my_avatar2.png
 category: Notes
 author: Starryue
 
@@ -203,14 +203,14 @@ $$
 
   线性插值, 三角形内部点的梯度
 
-![image3](\assets\images\notes\vcl\notes-vcl-part2-gradient.png)
+![image3](/assets/images/notes/vcl/notes-vcl-part2-gradient.png)
 
 - #### Laplace-Beltrami Operator (拉普拉斯)
 
   顶点Laplace算子的一般形式，均匀、余切情况
   均匀情况：$$ w_{ij} = \frac{1}{N_i} $$
    
-![image4](\assets\images\notes\vcl\notes-vcl-part2-Laplace)
+![image4](/assets/images/notes/vcl/notes-vcl-part2-Laplace.png)
 
 
 ------
