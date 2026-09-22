@@ -1,3 +1,12 @@
+---
+layout: post
+title: Autoencoder
+image: /assets/images/my_avatar3.png
+category: Notes
+author: Starryue
+
+---
+
 ## Autoencoder
 
 def: 前馈神经网络，输入 $x$ 目标：预测/重建/还原 $x$
