@@ -21,7 +21,7 @@ def: 前馈神经网络，输入 $x$ 目标：预测/重建/还原 $x$
 
 最简单的`autoencoder`:
 
-<img src="E:\27Fall\Generative_models\img\autoencoder.png" alt="autoencoder" style="zoom:55%;" />
+![image1](\assets\images\notes\generative-model\autoencoder.png)
 
 $$
 h = Ux，其中 x \in R^{d \times 1},U\in R^{k \times d} \\
