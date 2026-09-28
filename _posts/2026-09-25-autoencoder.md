@@ -116,7 +116,7 @@ noise选择的分布比较重要，这里先选择高斯分布
 >
 > 后者是希望 $\mu, \sigma$ 中间生成的h分布更接近标准正态分布，帮助完成generative model 的作用【生成模型目的】
 
-#### ==Probabilistic view==
+#### Probabilistic view
 
 从概率学角度说明VAE设计的合理性
 
