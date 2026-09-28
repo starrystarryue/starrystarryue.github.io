@@ -4,7 +4,6 @@ title: Autoencoder
 image: /assets/images/my_avatar3.png
 category: Notes
 author: Starryue
-
 ---
 
 # Generative Models
